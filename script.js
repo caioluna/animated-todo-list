@@ -37,7 +37,11 @@ function deleteCompleteTodo(event) {
     const item = event.target
 
     if (item.classList[0] === 'delete-button') {
-        item.parentElement.remove()
+        item.parentElement.classList.add('task-delete')
+        // only removes the item when the animation is completed
+        item.parentElement.addEventListener('animationend', () => {
+            item.parentElement.remove()
+        })
     } else if (item.classList[0] === 'complete-button' ||
                item.classList[0] === 'todo-item') {
         item.parentElement.classList.toggle('checked')
